@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #health-container {
+            width: 300px;
+            height: 30px;
+            border: 2px solid black;
+            background-color: #f3f3f3;
+            position: relative;
+            margin: 20px auto;
+        }
+        #health-bar {
+            width: 100%;
+            height: 100%;
+            background-color: green;
+            transition: width 0.3s;
+        }
+        #damage-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Health Counter</h1>
+
+    <div id="health-container">
+        <div id="health-bar"></div>
+    </div>
+
+    <button id="damage-btn">Take Damage</button>
+
+    <script>
+        let health = 100; // Starting health percentage
+        const healthBar = document.getElementById('health-bar');
+        const damageButton = document.getElementById('damage-btn');
+
+        damageButton.addEventListener('click', () => {
+            health -= 10; // Reduce health by 10% each click
+            if (health < 0) health = 0; // Health can't go below 0
+            healthBar.style.width = health + '%';
+
+            // Change the color of the health bar based on remaining health
+            if (health > 50) {
+                healthBar.style.backgroundColor = 'green';
+            } else if (health > 20) {
+                healthBar.style.backgroundColor = 'yellow';
+            } else {
+                healthBar.style.backgroundColor = 'red';
+            }
+        });
+    </script>
+
+</body>
+</html>
